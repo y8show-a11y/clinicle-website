@@ -38,7 +38,6 @@
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
     .section { padding: 96px 0; }
     .section-alt { background: var(--light-bg); }
-    .section-dark { background: var(--primary); color: var(--white); }
     .text-center { text-align: center; }
     .tag {
       display: inline-block;
@@ -56,21 +55,18 @@
       line-height: 1.3;
       margin-bottom: 16px;
     }
-    .section-title.light { color: var(--white); }
     .section-lead {
       font-size: 1.05rem;
       color: var(--gray);
       max-width: 640px;
       margin: 0 auto 56px;
     }
-    .section-lead.light { color: var(--accent-mid); }
     .divider {
       width: 48px; height: 4px;
       background: linear-gradient(90deg, var(--accent), var(--accent-mid));
       border-radius: 2px;
       margin: 16px auto 32px;
     }
-    .divider.left { margin-left: 0; }
 
     /* ===== BUTTONS ===== */
     .btn {
@@ -107,16 +103,6 @@
       border-color: var(--white);
       transform: translateY(-2px);
     }
-    .btn-outline-dark {
-      background: transparent;
-      color: var(--primary);
-      border-color: var(--primary);
-    }
-    .btn-outline-dark:hover {
-      background: var(--primary);
-      color: var(--white);
-      transform: translateY(-2px);
-    }
     .btn-link {
       display: inline-flex;
       align-items: center;
@@ -127,11 +113,6 @@
       transition: gap 0.2s;
     }
     .btn-link:hover { gap: 10px; }
-    .btn-sm {
-      padding: 10px 20px;
-      font-size: 0.875rem;
-    }
-    .btn-icon { font-size: 1.1em; }
 
     /* ===== HEADER / NAV ===== */
     header {
@@ -478,7 +459,6 @@
       color: var(--white);
       transform: translateY(-2px);
     }
-    .service-link-btn.external::after { content: '↗'; font-size: 0.85em; }
 
     /* ===== MEDIA SECTION ===== */
     .media-grid {
@@ -595,11 +575,33 @@
       background: #0d1f2d;
       color: rgba(255,255,255,0.5);
       text-align: center;
-      padding: 32px 24px;
+      padding: 40px 24px;
       font-size: 0.85rem;
     }
     footer a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
     footer a:hover { color: var(--white); }
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin-bottom: 16px;
+    }
+    .footer-privacy {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-privacy a {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .footer-privacy a:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
@@ -658,11 +660,11 @@
       <div class="hero-actions">
         <a href="#services" class="btn btn-primary">
           <span>サービスを見る</span>
-          <span class="btn-icon">↓</span>
+          <span>↓</span>
         </a>
         <a href="#contact" class="btn btn-outline">
           <span>お問い合わせ</span>
-          <span class="btn-icon">→</span>
+          <span>→</span>
         </a>
       </div>
     </div>
@@ -783,7 +785,7 @@
         <div class="service-num">SERVICE 02</div>
         <div class="service-title">業務効率化・AI活用アドバイザリー</div>
         <p class="service-desc">人材確保が難しい時代を生き抜くための業務効率化・省力化を支援。最新のAIテクノロジーを活用し、スタッフの負担軽減とサービス品質の両立を実現します。</p>
-        <a href="https://y8show-a11y.github.io/hsc-sys/" target="_blank" rel="noopener" class="service-link-btn external">診療記録AI自動作成システム HSC</a>
+        <a href="https://y8show-a11y.github.io/hsc-sys/" target="_blank" rel="noopener" class="service-link-btn">診療記録AI自動作成システム HSC ↗</a>
       </div>
 
       <div class="service-card">
@@ -797,7 +799,7 @@
         <div class="service-num">SERVICE 04</div>
         <div class="service-title">医師・医療機関マッチングサービス「オルクリ」</div>
         <p class="service-desc">非常勤医師とクリニック、常勤医師と病院をつなぐ有料職業紹介サービス。「適切な医療」を提供できる医師と医療機関だけが集まる、信頼のコミュニティを形成します。</p>
-        <a href="https://clinicle.jp/" target="_blank" rel="noopener" class="service-link-btn external">オルクリのサイトへ</a>
+        <a href="https://clinicle.jp/" target="_blank" rel="noopener" class="service-link-btn">オルクリのサイトへ ↗</a>
       </div>
 
       <div class="service-card">
@@ -923,14 +925,17 @@
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
-    <p style="margin-bottom:12px;">
-      <a href="#mission">Mission</a> &nbsp;|&nbsp;
-      <a href="#vision">Vision</a> &nbsp;|&nbsp;
-      <a href="#services">Services</a> &nbsp;|&nbsp;
-      <a href="#media">情報発信</a> &nbsp;|&nbsp;
-      <a href="#company">会社概要</a> &nbsp;|&nbsp;
+    <div class="footer-nav">
+      <a href="#mission">Mission</a>
+      <a href="#vision">Vision</a>
+      <a href="#services">Services</a>
+      <a href="#media">情報発信</a>
+      <a href="#company">会社概要</a>
       <a href="#contact">お問い合わせ</a>
-    </p>
+    </div>
+    <div class="footer-privacy">
+      <a href="https://clinicle.jp/privacy/" target="_blank" rel="noopener">プライバシーポリシー ↗</a>
+    </div>
     <p>© 2025 株式会社クリニクル All rights reserved.</p>
   </div>
 </footer>
@@ -945,8 +950,7 @@
 
   // Hamburger menu
   function toggleMenu() {
-    const nav = document.getElementById('navLinks');
-    nav.classList.toggle('open');
+    document.getElementById('navLinks').classList.toggle('open');
   }
 
   // Close menu on link click (mobile)
