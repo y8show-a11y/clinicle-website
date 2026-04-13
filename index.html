@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社クリニクル | 医療の質を守り、医師が本来の使命に向き合える環境を。</title>
+  <meta name="description" content="株式会社クリニクルは、医療機関の経営支援・業務効率化・人材マッチングを通じて、医師が適切な医療に専念できる環境づくりを支援します。">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+      color: #1c2833;
+      background: #fff;
+      line-height: 1.8;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --primary: #1a5276;
+      --accent: #2e86c1;
+      --accent-light: #d6eaf8;
+      --accent-mid: #aed6f1;
+      --dark: #1c2833;
+      --gray: #7f8c8d;
+      --light-bg: #f4f8fc;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(26,82,118,0.10);
+      --shadow-hover: 0 8px 32px rgba(26,82,118,0.18);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-alt { background: var(--light-bg); }
+    .section-dark { background: var(--primary); color: var(--white); }
+    .text-center { text-align: center; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .section-title.light { color: var(--white); }
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .section-lead.light { color: var(--accent-mid); }
+    .divider {
+      width: 48px; height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-mid));
+      border-radius: 2px;
+      margin: 16px auto 32px;
+    }
+    .divider.left { margin-left: 0; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+    .btn-primary:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .btn-outline-dark:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: gap 0.2s;
+    }
+    .btn-link:hover { gap: 10px; }
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+    }
+    .btn-icon { font-size: 1.1em; }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26,82,118,0.08);
+      transition: box-shadow 0.3s;
+    }
+    header.scrolled { box-shadow: var(--shadow); }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+    }
+    .nav-cta:hover { background: var(--primary) !important; color: var(--white) !important; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: all 0.3s; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0d3a5c 0%, #1a5276 45%, #2471a3 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 60vw; height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,134,193,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -15%; left: -5%;
+      width: 40vw; height: 40vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(174,214,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      color: var(--accent-mid);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent-mid);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.85;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== MISSION ===== */
+    .mission-blocks { display: flex; flex-direction: column; gap: 40px; margin-top: 56px; }
+    .mission-block {
+      display: grid;
+      grid-template-columns: 4px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .mission-block-bar {
+      background: linear-gradient(to bottom, var(--accent), var(--accent-mid));
+      border-radius: 2px;
+      min-height: 100%;
+      align-self: stretch;
+    }
+    .mission-block-content h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .mission-block-content p {
+      color: #34495e;
+      line-height: 1.85;
+    }
+    .mission-summary {
+      background: var(--primary);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 40px 48px;
+      margin-top: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-summary::before {
+      content: '"';
+      position: absolute;
+      top: -20px; left: 24px;
+      font-size: 160px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mission-summary p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      position: relative;
+    }
+    .mission-summary ul {
+      list-style: none;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mission-summary ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 1rem;
+    }
+    .mission-summary ul li::before {
+      content: '●';
+      color: var(--accent-mid);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== VISION ===== */
+    .vision-statement {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 900;
+      color: var(--primary);
+      text-align: center;
+      line-height: 1.5;
+      padding: 40px 48px;
+      background: var(--accent-light);
+      border-radius: var(--radius);
+      border-left: 6px solid var(--accent);
+      margin-bottom: 48px;
+    }
+    .vision-body { max-width: 760px; margin: 0 auto; }
+    .vision-body p { color: #34495e; line-height: 1.9; margin-bottom: 20px; }
+    .equality-box {
+      background: var(--white);
+      border: 1px solid var(--accent-mid);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-top: 40px;
+    }
+    .equality-box h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .equality-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .equality-item {
+      padding: 20px;
+      border-radius: var(--radius-sm);
+    }
+    .equality-item.negative {
+      background: #fdf0f0;
+      border-left: 4px solid #e74c3c;
+    }
+    .equality-item.positive {
+      background: #eafaf1;
+      border-left: 4px solid #27ae60;
+    }
+    .equality-item .label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .equality-item.negative .label { color: #c0392b; }
+    .equality-item.positive .label { color: #1e8449; }
+    .equality-item p { font-size: 0.9rem; color: #34495e; line-height: 1.7; }
+    .equality-box .note {
+      font-size: 0.9rem;
+      color: var(--gray);
+      border-top: 1px solid var(--accent-light);
+      padding-top: 20px;
+      line-height: 1.8;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 56px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(26,82,118,0.1);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-mid));
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-mid);
+    }
+    .service-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .service-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      color: #5d6d7e;
+      line-height: 1.8;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+    .service-link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 50px;
+      transition: all 0.25s;
+      border: 2px solid transparent;
+    }
+    .service-link-btn:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .service-link-btn.external::after { content: '↗'; font-size: 0.85em; }
+
+    /* ===== MEDIA SECTION ===== */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .media-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+      border: 1px solid rgba(26,82,118,0.1);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .media-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+    .media-icon.note { background: #41c9b4; color: white; }
+    .media-icon.youtube { background: #ff0000; color: white; }
+    .media-icon.hsc { background: var(--primary); color: white; font-size: 1rem; font-weight: 900; }
+    .media-icon.orcli { background: var(--accent); color: white; font-size: 0.9rem; font-weight: 900; }
+    .media-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .media-desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ===== COMPANY ===== */
+    .company-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .company-table tr { border-bottom: 1px solid var(--accent-light); }
+    .company-table tr:last-child { border-bottom: none; }
+    .company-table th {
+      width: 200px;
+      padding: 20px 28px;
+      background: var(--accent-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .company-table td {
+      padding: 20px 28px;
+      color: #34495e;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: linear-gradient(135deg, #0d3a5c, #1a5276);
+      color: var(--white);
+      text-align: center;
+      padding: 96px 0;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      padding: 56px 48px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-card h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .contact-card p {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 36px;
+      line-height: 1.85;
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-mid);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0d1f2d;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--white); padding: 24px; gap: 20px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: 1.8rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { justify-content: center; }
+      .equality-grid { grid-template-columns: 1fr; }
+      .mission-summary { padding: 32px 24px; }
+      .company-table th { width: 120px; padding: 16px 16px; font-size: 0.8rem; }
+      .company-table td { padding: 16px 16px; }
+      .contact-card { padding: 36px 24px; }
+      .vision-statement { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <nav class="container">
+    <a href="#" class="logo">クリ<span>ニクル</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#media">情報発信</a></li>
+      <li><a href="#company">会社概要</a></li>
+      <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span>●</span> 株式会社クリニクル
+      </div>
+      <h1 class="hero-title">
+        医療の<em>「質」</em>を守り、<br>
+        医師が本来の使命に<br>
+        向き合える環境を。
+      </h1>
+      <p class="hero-sub">
+        クリニクルは、医療機関の経営支援・業務効率化・人材マッチングを通じて、<br>
+        医師が適切な医療に専念できる環境づくりを支援します。
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary">
+          <span>サービスを見る</span>
+          <span class="btn-icon">↓</span>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span>お問い合わせ</span>
+          <span class="btn-icon">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ===== MISSION ===== -->
+<section id="mission" class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag">Mission</span>
+      <h2 class="section-title">私たちの使命</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        日本の医療は、大きな転換点を迎えようとしています。<br>
+        その変化の中で、医師と医療機関が本来の役割を果たし続けるために—<br>
+        私たちクリニクルは存在します。
+      </p>
+    </div>
+
+    <div class="mission-blocks">
+      <div class="mission-block">
+        <div class="mission-block-bar"></div>
+        <div class="mission-block-content">
+          <h3>医療保険制度の転換と、これからの現実</h3>
+          <p>超高齢化社会の進展とともに、医療費は増え続けています。一方で、社会保険料や税金の負担は限界を迎えつつあり、現行の手厚い公的医療を維持することは、もはや現実的ではありません。</p>
+          <br>
+          <p>今後の日本の医療制度は、英国・カナダ・オーストラリアや欧州諸国のように、税収を財源とした最低限の公的医療を基盤としながら、追加的な医療は自費で提供されるという方向へ、段階的に近づいていく可能性が高いと考えられます。「かかりたいときに、必要な医療をすぐ受けられる」という、これまで当たり前だった環境は、変わっていきます。</p>
+        </div>
+      </div>
+
+      <div class="mission-block">
+        <div class="mission-block-bar"></div>
+        <div class="mission-block-content">
+          <h3>「正しい情報」にたどり着けない現実</h3>
+          <p>健康意識が高まる一方で、インターネット上には玉石混交の情報が溢れています。AIによる情報提供も普及していますが、その情報源の信頼性は担保されておらず、医師の適切な判断を代替するには至っていません。誤った情報にもとづいた自己判断が、かえって健康を損ない、本来は不要だったはずの医療につながってしまう—これは個人にとっても、社会全体にとっても損失です。</p>
+        </div>
+      </div>
+
+      <div class="mission-block">
+        <div class="mission-block-bar"></div>
+        <div class="mission-block-content">
+          <h3>医療機関が抱える経営と質の両立</h3>
+          <p>経営が逼迫した医療機関では、エビデンスよりも収益を優先した診療が選ばれやすくなります。これは医師個人の問題ではなく、制度・環境の問題です。医師が本来の使命—「適切な医療を、必要な人に届けること」—に専念できるよう、経営の安定と業務効率の改善を支えることが必要です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-summary">
+      <p>私たちクリニクルは、医療機関が質の高い医療サービスを提供し続けるために、</p>
+      <ul>
+        <li>経営・財務の改善に向けたノウハウの提供</li>
+        <li>AI・テクノロジーを活用した業務効率化の支援</li>
+        <li>医療従事者同士が安心して支え合える「医療プラットフォーム」の構築</li>
+      </ul>
+      <p>これらを通じて、医師が本来の使命に向き合える環境をつくることを、私たちの使命とします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISION ===== -->
+<section id="vision" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag">Vision</span>
+      <h2 class="section-title">10年後に実現したい社会</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="vision-statement">
+      皆が「公平」に、適切な医療を享受できる社会を実現する。
+    </div>
+
+    <div class="vision-body">
+      <p>私たちが掲げる「公平」とは、単なる「平等」とは明確に異なります。</p>
+      <p>医療アクセスが誰にでも平等に開かれているがゆえに、受診の必要性が低い人が「ひまだから」「市販薬で買うより自己負担が少ないから」といった理由で頻回に受診し、医療資源が浪費されています。真に医療を必要とする人の受け皿を狭めているのは、こうした構造的な問題です。</p>
+      <p>医療リテラシー・健康リテラシーを社会全体で底上げし、「受診すべきかどうか」を自ら判断できる人を増やすこと—それが、限られた医療資源を本当に必要な人へ届けるための、私たちの答えです。</p>
+
+      <div class="equality-box">
+        <h4>「公平」と「平等」の違い</h4>
+        <div class="equality-grid">
+          <div class="equality-item negative">
+            <div class="label">平等（問題の構造）</div>
+            <p>すべての人が、受診の必要性にかかわらず自由に医療機関を受診できる状態。リテラシーの低さや自己負担の少なさが不必要な受診を招き、医療資源を浪費させる原因となっています。</p>
+          </div>
+          <div class="equality-item positive">
+            <div class="label">公平（目指す社会）</div>
+            <p>受診の必要性に応じて、限られた医療資源が適切に届けられる状態。医療リテラシーの向上によって、本当に必要な人・場面に医療が集中できる環境を整えます。</p>
+          </div>
+        </div>
+        <p class="note">クリニクルが目指すのは「公平」な医療の実現です。医療リテラシーの向上と、無駄のない医療資源の活用が、その鍵を握っています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag">Services</span>
+      <h2 class="section-title">私たちのサービス</h2>
+      <div class="divider"></div>
+      <p class="section-lead">クリニクルは、5つの専門サービスで医療機関・医師・患者を支援します。</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">SERVICE 01</div>
+        <div class="service-title">開業・医院運営アドバイザリー</div>
+        <p class="service-desc">「適切な医療」を提供し続けるための医療機関経営の健全化をサポート。開業前の計画策定から、既存クリニックの経営改善まで、豊富な知見でご支援します。</p>
+        <a href="#contact" class="service-link-btn">詳細・お問い合わせ →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">SERVICE 02</div>
+        <div class="service-title">業務効率化・AI活用アドバイザリー</div>
+        <p class="service-desc">人材確保が難しい時代を生き抜くための業務効率化・省力化を支援。最新のAIテクノロジーを活用し、スタッフの負担軽減とサービス品質の両立を実現します。</p>
+        <a href="https://y8show-a11y.github.io/hsc-sys/" target="_blank" rel="noopener" class="service-link-btn external">診療記録AI自動作成システム HSC</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">SERVICE 03</div>
+        <div class="service-title">医療・健康リテラシー向上のための情報発信</div>
+        <p class="service-desc">開業医・勤務医・一般の方々に向けて、確かな医療情報をわかりやすく発信。note記事、YouTube、Podcastを通じ、ターゲットに届く情報を継続的に提供します。</p>
+        <a href="#media" class="service-link-btn">情報発信チャンネルを見る →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">SERVICE 04</div>
+        <div class="service-title">医師・医療機関マッチングサービス「オルクリ」</div>
+        <p class="service-desc">非常勤医師とクリニック、常勤医師と病院をつなぐ有料職業紹介サービス。「適切な医療」を提供できる医師と医療機関だけが集まる、信頼のコミュニティを形成します。</p>
+        <a href="https://clinicle.jp/" target="_blank" rel="noopener" class="service-link-btn external">オルクリのサイトへ</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">SERVICE 05</div>
+        <div class="service-title">整形外科プライベートドクターサービス</div>
+        <p class="service-desc">健康意識の高い方々に向けた、公的医療の枠を超えた整形外科専門の相談・診療サービス。専門医をリアルタイムでマッチングし、一人ひとりに最適なサポートを提供します。</p>
+        <a href="#contact" class="service-link-btn">詳細・お問い合わせ →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEDIA ===== -->
+<section id="media" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag">Information</span>
+      <h2 class="section-title">情報発信・関連サービス</h2>
+      <div class="divider"></div>
+      <p class="section-lead">医療従事者・一般の方々に向けて、エビデンスに基づいた信頼性の高い情報を届けています。</p>
+    </div>
+
+    <div class="media-grid">
+
+      <a href="https://clinicle.jp/" target="_blank" rel="noopener" class="media-card">
+        <div class="media-icon orcli">オルクリ</div>
+        <div class="media-name">オルクリ</div>
+        <p class="media-desc">非常勤医師と開業医のマッチングサービス。医師と医療機関をつなぎます。</p>
+        <span class="btn-link">サイトへ <span>↗</span></span>
+      </a>
+
+      <a href="https://y8show-a11y.github.io/hsc-sys/" target="_blank" rel="noopener" class="media-card">
+        <div class="media-icon hsc">HSC</div>
+        <div class="media-name">診療記録AI自動作成システム HSC</div>
+        <p class="media-desc">AIを活用した診療業務省力化サービス。診療記録の自動作成で業務効率を向上。</p>
+        <span class="btn-link">サイトへ <span>↗</span></span>
+      </a>
+
+      <a href="https://note.com/kitakata_incho" target="_blank" rel="noopener" class="media-card">
+        <div class="media-icon note">n</div>
+        <div class="media-name">note</div>
+        <p class="media-desc">開業医・勤務医・患者向けに、医療・健康リテラシー向上のための記事を発信中。</p>
+        <span class="btn-link">記事を読む <span>↗</span></span>
+      </a>
+
+      <a href="https://www.youtube.com/@kitakata-incho" target="_blank" rel="noopener" class="media-card">
+        <div class="media-icon youtube">▶</div>
+        <div class="media-name">YouTube</div>
+        <p class="media-desc">医療・健康情報をわかりやすく動画で解説。チャンネル登録をお待ちしています。</p>
+        <span class="btn-link">チャンネルへ <span>↗</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPANY ===== -->
+<section id="company" class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="tag">Company</span>
+      <h2 class="section-title">会社概要</h2>
+      <div class="divider"></div>
+    </div>
+
+    <table class="company-table">
+      <tbody>
+        <tr>
+          <th>会社名</th>
+          <td>株式会社クリニクル（Clinicle Inc.）</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>
+            【本店】北海道札幌市<br>
+            【支店１】北海道帯広市<br>
+            【支店２】愛知県名古屋市
+          </td>
+        </tr>
+        <tr>
+          <th>設立</th>
+          <td>2025年1月27日</td>
+        </tr>
+        <tr>
+          <th>資本金</th>
+          <td>5,000,000円（2025年1月現在）</td>
+        </tr>
+        <tr>
+          <th>役員</th>
+          <td>
+            代表取締役　大野洋平<br>
+            専務取締役　大羽宏樹
+          </td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>医療機関運営アドバイザリー・情報提供サービス・職業紹介事業・医師と患者のマッチング</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <h2>お問い合わせ</h2>
+      <p>サービスに関するご相談、取材・メディア掲載のご依頼、採用に関するお問い合わせなど、お気軽にご連絡ください。通常2営業日以内にご返答いたします。</p>
+      <div class="contact-email">
+        <span>✉</span>
+        <span>info@clinicle.jp（仮）</span>
+      </div>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:info@clinicle.jp" class="btn btn-primary">メールで問い合わせる</a>
+        <a href="https://clinicle.jp/" target="_blank" rel="noopener" class="btn btn-outline">オルクリへ ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom:12px;">
+      <a href="#mission">Mission</a> &nbsp;|&nbsp;
+      <a href="#vision">Vision</a> &nbsp;|&nbsp;
+      <a href="#services">Services</a> &nbsp;|&nbsp;
+      <a href="#media">情報発信</a> &nbsp;|&nbsp;
+      <a href="#company">会社概要</a> &nbsp;|&nbsp;
+      <a href="#contact">お問い合わせ</a>
+    </p>
+    <p>© 2025 株式会社クリニクル All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== JS ===== -->
+<script>
+  // Header shadow on scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger menu
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+
+  // Close menu on link click (mobile)
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .media-card, .mission-block, .equality-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
